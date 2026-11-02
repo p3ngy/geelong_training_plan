@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Geelong 70.3 training plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f3f6f7;
+            --surf: #fff;
+            --ink: #10212b;
+            --mute: #52656f;
+            --line: #d5dee3;
+            --acc: #0a6e82;
+            --race: #b86e00;
+            --swim: #1a6fa3;
+            --bike: #2a7d4f;
+            --run: #c2491f;
+            --gym: #6f55a0;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0d1a21;
+                --surf: #14262f;
+                --ink: #e6eef2;
+                --mute: #9db0ba;
+                --line: #26404c;
+                --acc: #4cc3d9;
+                --race: #f0b24a;
+                --swim: #58b0e6;
+                --bike: #5fc48a;
+                --run: #f0875f;
+                --gym: #b39ae0
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0d1a21;
+            --surf: #14262f;
+            --ink: #e6eef2;
+            --mute: #9db0ba;
+            --line: #26404c;
+            --acc: #4cc3d9;
+            --race: #f0b24a;
+            --swim: #58b0e6;
+            --bike: #5fc48a;
+            --run: #f0875f;
+            --gym: #b39ae0
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 400 15px/1.45 Barlow, system-ui, -apple-system, "Segoe UI", sans-serif
+        }
+
+        main {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 26px 16px 60px
+        }
+
+        h1,
+        h2 {
+            font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 3.2rem)
+        }
+
+        p {
+            max-width: 80ch;
+            margin: .5em 0
+        }
+
+        .mute {
+            color: var(--mute)
+        }
+
+        .key {
+            background: var(--surf);
+            border: 1px solid var(--line);
+            border-left: 5px solid var(--acc);
+            padding: 10px 16px;
+            margin: 18px 0 8px
+        }
+
+        .key p {
+            margin: .3em 0
+        }
+
+        .wk {
+            margin-top: 26px
+        }
+
+        .wh {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 4px 14px;
+            padding: 0 0 6px
+        }
+
+        .wh h2 {
+            font-size: 1.5rem
+        }
+
+        .wh .hrs {
+            margin-left: auto;
+            font-weight: 600;
+            color: var(--acc)
+        }
+
+        .wn {
+            flex-basis: 100%;
+            color: var(--mute);
+            margin: 0 0 6px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line)
+        }
+
+        .d {
+            background: var(--surf);
+            padding: 8px 9px;
+            min-height: 110px
+        }
+
+        .d h3 {
+            font: 600 .8rem/1.2 Barlow, sans-serif;
+            margin: 0 0 6px;
+            color: var(--mute)
+        }
+
+        .s {
+            margin: 0 0 6px;
+            padding-left: 7px;
+            border-left: 3px solid var(--line);
+            font-size: .85rem
+        }
+
+        .s b {
+            display: block;
+            font-weight: 600;
+            font-size: .8rem
+        }
+
+        .swim {
+            border-color: var(--swim)
+        }
+
+        .swim b {
+            color: var(--swim)
+        }
+
+        .bike {
+            border-color: var(--bike)
+        }
+
+        .bike b {
+            color: var(--bike)
+        }
+
+        .run {
+            border-color: var(--run)
+        }
+
+        .run b {
+            color: var(--run)
+        }
+
+        .gym {
+            border-color: var(--gym)
+        }
+
+        .gym b {
+            color: var(--gym)
+        }
+
+        .race {
+            border-color: var(--race);
+            background: color-mix(in srgb, var(--race) 14%, transparent);
+            padding: 4px 7px
+        }
+
+        .race b {
+            color: var(--race)
+        }
+
+        .rest {
+            color: var(--mute);
+            border-color: transparent;
+            padding-left: 0
+        }
+
+        .now h2::after {
+            content: " (this week)";
+            color: var(--acc);
+            font-size: 1rem
+        }
+
+        @media (max-width:900px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .d {
+                min-height: 0;
+                display: grid;
+                grid-template-columns: 74px 1fr;
+                gap: 4px 8px
+            }
+
+            .d h3 {
+                margin: 0
+            }
+        }
+
+        :root {
+            --p0: #8cc0cf;
+            --p1: #3f93a9;
+            --p2: #0a5d75;
+            --p3: #a9b8c0
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --p0: #2f6574;
+                --p1: #3b8da3;
+                --p2: #5cc1d8;
+                --p3: #5d6f78
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --p0: #2f6574;
+            --p1: #3b8da3;
+            --p2: #5cc1d8;
+            --p3: #5d6f78
+        }
+
+        h1 {
+            font-size: clamp(2.6rem, 9vw, 4.6rem)
+        }
+
+        h2.sec {
+            font-size: 1.9rem;
+            margin: 46px 0 12px
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--mute);
+            max-width: 60ch
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            margin-top: 22px
+        }
+
+        .facts div {
+            background: var(--surf);
+            padding: 12px 14px
+        }
+
+        .facts b {
+            display: block;
+            font: 700 1.8rem/1.1 "Barlow Condensed", sans-serif;
+            color: var(--acc)
+        }
+
+        .facts span {
+            color: var(--mute);
+            font-size: .9rem
+        }
+
+        .strip {
+            display: grid;
+            grid-template-columns: repeat(21, minmax(0, 1fr));
+            gap: 2px
+        }
+
+        .c {
+            background: var(--surf);
+            border-top: 6px solid var(--p0);
+            text-align: center;
+            padding: 6px 1px 8px;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .c b {
+            display: block;
+            font: 700 1.2rem/1 "Barlow Condensed", sans-serif
+        }
+
+        .c span {
+            font-size: .62rem;
+            color: var(--mute)
+        }
+
+        .p1 {
+            border-top-color: var(--p1)
+        }
+
+        .p2 {
+            border-top-color: var(--p2)
+        }
+
+        .p3 {
+            border-top-color: var(--p3)
+        }
+
+        .rc {
+            box-shadow: inset 0 -6px 0 var(--race)
+        }
+
+        .de {
+            background-image: repeating-linear-gradient(135deg, transparent 0 5px, color-mix(in srgb, var(--mute) 25%, transparent) 5px 7px)
+        }
+
+        .hk b::after {
+            content: "*"
+        }
+
+        .legend {
+            font-size: .85rem;
+            margin: 8px 0 14px
+        }
+
+        .ph {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line)
+        }
+
+        .ph div {
+            background: var(--surf);
+            padding: 12px 14px;
+            font-size: .9rem
+        }
+
+        .ph b {
+            display: block;
+            font: 700 1.25rem/1.1 "Barlow Condensed", sans-serif
+        }
+
+        .ph span {
+            display: block;
+            color: var(--acc);
+            font-weight: 600;
+            margin-bottom: 4px
+        }
+
+        .zg,
+        .rg {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 14px
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: .88rem;
+            background: var(--surf);
+            border: 1px solid var(--line)
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 6px 9px;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top
+        }
+
+        th {
+            background: var(--bg);
+            font-weight: 600
+        }
+
+        tr.hl td {
+            font-weight: 600;
+            background: color-mix(in srgb, var(--race) 12%, transparent)
+        }
+
+        .box {
+            background: var(--surf);
+            border: 1px solid var(--line);
+            border-left: 5px solid var(--acc);
+            padding: 2px 16px 8px
+        }
+
+        .box h3 {
+            font: 700 1.3rem/1.2 "Barlow Condensed", sans-serif;
+            margin: 12px 0 4px
+        }
+
+        .box ul {
+            padding-left: 1.1em;
+            margin: .3em 0
+        }
+
+        .box li {
+            margin: .4em 0;
+            font-size: .92rem
+        }
+
+        .box.race {
+            border-left-color: var(--race)
+        }
+
+        .sw {
+            display: inline-flex;
+            border: 1px solid var(--line);
+            margin: 6px 0 4px
+        }
+
+        .sw button {
+            font: 600 .9rem Barlow, sans-serif;
+            padding: 8px 14px;
+            border: 0;
+            background: var(--surf);
+            color: var(--ink);
+            cursor: pointer
+        }
+
+        .sw button[aria-pressed="true"] {
+            background: var(--acc);
+            color: #fff
+        }
+
+        @media (max-width:900px) {
+            .strip {
+                grid-template-columns: repeat(7, minmax(0, 1fr))
+            }
+        }
+
+        @media print {
+            .sw {
+                display: none
+            }
+
+            .wk,
+            .box,
+            .ph {
+                break-inside: avoid
+            }
+
+            body {
+                background: #fff
+            }
+        }
+    
+.s.mv{position:relative;padding-right:22px;cursor:grab;border-radius:0 3px 3px 0;touch-action:pan-y}
+.s.mv:hover,.s.mv:focus-visible{background:color-mix(in srgb,var(--acc) 10%,transparent)}
+.s.mv:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.grip{position:absolute;right:0;top:0;bottom:0;width:22px;touch-action:none;opacity:.5}
+.grip::before{content:"";position:absolute;right:6px;bottom:5px;width:8px;height:12px;background:radial-gradient(circle,currentColor 1.2px,transparent 1.6px) 0 0/4px 4px}
+.s.lift{opacity:.3}
+.s.ghost{position:fixed;left:0;top:0;z-index:60;margin:0;pointer-events:none;background:var(--surf);box-shadow:0 10px 26px rgba(0,0,0,.28);padding:5px 22px 5px 8px;opacity:.97}
+.ghost .grip{display:none}
+.d.over{outline:2px dashed var(--acc);outline-offset:-2px;background:color-mix(in srgb,var(--acc) 9%,var(--surf))}
+body.dragging{cursor:grabbing;user-select:none;-webkit-user-select:none}
+.d>div:empty::before{content:"Rest";color:var(--mute);font-size:.85rem}
+.hint{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0 0}
+.rs{font:600 .8rem Barlow,sans-serif;border:1px solid var(--line);background:var(--surf);color:var(--ink);padding:4px 10px;cursor:pointer}
+.rs:hover{border-color:var(--acc);color:var(--acc)}.rs[hidden]{display:none}
+.del{position:absolute;top:1px;right:3px;width:18px;height:18px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--mute);font:600 15px/18px Barlow,sans-serif;cursor:pointer;opacity:0;z-index:1}
+.s.mv:hover .del,.del:focus-visible{opacity:1}.del:hover{background:color-mix(in srgb,var(--run) 18%,transparent);color:var(--run)}
+@media (hover:none){.del{opacity:.7}}
+.ghost .del{display:none}
+#toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:70;display:flex;gap:14px;align-items:center;background:var(--ink);color:var(--bg);padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.3);font-size:.9rem}
+#toast[hidden]{display:none}#toast button{font:600 .9rem Barlow,sans-serif;background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;padding:2px 4px}
+.hrs.ed::after{content:" as planned";font-weight:400;color:var(--mute)}
+.s.ck{position:relative;padding-left:28px}
+.chk{-webkit-appearance:none;appearance:none;position:absolute;left:6px;top:4px;width:17px;height:17px;margin:0;border:1.5px solid var(--mute);border-radius:50%;background:var(--surf);cursor:pointer;display:grid;place-content:center}
+.chk:checked{background:var(--acc);border-color:var(--acc)}
+.chk:checked::after{content:"";width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.chk:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.s.done{opacity:.55}.s.done b{text-decoration:line-through}
+.ghost .chk{display:none}
+.prog{color:var(--mute);font-weight:600;font-size:.9rem}.tot{color:var(--acc)}
+.wk.now .wh h2{color:var(--acc)}
+.d.today{background:color-mix(in srgb,var(--acc) 12%,var(--surf));box-shadow:inset 0 3px 0 var(--acc)}
+.d.today h3{color:var(--acc);font-weight:700}.d.today h3::after{content:" (today)"}
+.c.cur{outline:2px solid var(--acc);outline-offset:-2px}.c.cur b{color:var(--acc)}
+@media (max-width:900px){.s.mv{padding-right:74px}.grip{width:36px}.grip::before{right:13px;top:50%;bottom:auto;margin-top:-6px}.del{right:38px;top:50%;margin-top:-16px;width:32px;height:32px;font-size:20px;line-height:32px;opacity:.7}}
+@media (max-width:900px){.s.ck{padding-left:44px}.chk{left:9px;top:50%;margin-top:-13px;width:26px;height:26px}.chk:checked::after{width:6px;height:12px}}
+</style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Geelong 70.3<br>Training plan</h1>
+            <p class="lead">Sunday 21 March 2027, Geelong: 1.9 km swim, 90 km bike, 21.1 km run. Twenty-one weeks of
+                training
+                from Monday 26 October 2026.</p>
+        </header>
+
+        <h2 class="sec">Timeline</h2>
+        <div class="strip" id="strip">
+            <div class="c p0"><b>1</b><span>26 Oct</span></div>
+            <div class="c p0"><b>2</b><span>2 Nov</span></div>
+            <div class="c p0"><b>3</b><span>9 Nov</span></div>
+            <div class="c p0"><b>4</b><span>16 Nov</span></div>
+            <div class="c p0"><b>5</b><span>23 Nov</span></div>
+            <div class="c p0 rc"><b>6</b><span>30 Nov</span></div>
+            <div class="c p1"><b>7</b><span>7 Dec</span></div>
+            <div class="c p1 hk"><b>8</b><span>14 Dec</span></div>
+            <div class="c p1"><b>9</b><span>21 Dec</span></div>
+            <div class="c p1"><b>10</b><span>28 Dec</span></div>
+            <div class="c p1 rc"><b>11</b><span>4 Jan</span></div>
+            <div class="c p1"><b>12</b><span>11 Jan</span></div>
+            <div class="c p2"><b>13</b><span>18 Jan</span></div>
+            <div class="c p2"><b>14</b><span>25 Jan</span></div>
+            <div class="c p2 rc de"><b>15</b><span>1 Feb</span></div>
+            <div class="c p2 de"><b>16</b><span>8 Feb</span></div>
+            <div class="c p2 de"><b>17</b><span>15 Feb</span></div>
+            <div class="c p2 rc de"><b>18</b><span>22 Feb</span></div>
+            <div class="c p3"><b>19</b><span>1 Mar</span></div>
+            <div class="c p3"><b>20</b><span>8 Mar</span></div>
+            <div class="c p3 rc"><b>21</b><span>15 Mar</span></div>
+        </div>
+        <p class="legend mute">Numbers are training weeks with the Monday date beneath. Amber underline: race week.
+            Hatched:
+            your Germany block, 1 to 28 February. *Week 8 is the hiking trip.</p>
+        <div class="ph">
+            <div><b>Base, weeks 1 to 6</b><span>26 Oct to 6 Dec</span>Rebuild running slowly to about 18 km a week,
+                steady
+                aerobic riding with one quality session, squad swims, two gym sessions. Tests in week 4. Race 1 (sprint)
+                on 6
+                Dec.</div>
+            <div><b>Build, weeks 7 to 12</b><span>7 Dec to 17 Jan</span>Brick runs begin, sweet spot work grows, long
+                ride
+                reaches 3:30, long run 12 km. Hiking trip resets week 8. Race 2 (Olympic) on 10 Jan.</div>
+            <div><b>Specific, weeks 13 to 18</b><span>18 Jan to 28 Feb</span>Race-power blocks on the TT bike, long ride
+                up to
+                4:15, long run up to 18 km, peak week 17. Germany block in weeks 15 to 18: indoor bike, pool and run
+                focus.
+            </div>
+            <div><b>Taper, weeks 19 to 21</b><span>1 Mar to 21 Mar</span>Volume drops, short sharp efforts stay, last
+                long run
+                in week 19. Nothing new in race week. Race day 21 Mar.</div>
+        </div>
+
+        <h2 class="sec">Weekly planner</h2>
+        <p class="hint mute"><span>Drag a session to another day in the same week to reschedule it. On a phone, drag from the dots on its right. Tick the circle on a session when you have done it. Delete a session with its × (or the Delete key) and tap Undo if it was a mistake. Keyboard: focus a session, then Alt with the arrow keys. Changes save in this browser; races and travel days are fixed.</span><button class="rs" id="rsall" type="button">Reset all weeks</button><button class="rs" id="jump" type="button" hidden>Jump to this week</button><strong id="tot" class="tot"></strong></p>
+        <div id="out">
+            <section class="wk">
+                <div class="wh">
+                    <h2>Week 0, 19 October: recovery</h2><span class="hrs">light</span>
+                    <p class="wn">Recovery after Ride Around the Bay (213.8 km at 188 W normalised power). Monday to
+                        Sunday: truly easy. Walking, an optional easy 30' spin, one easy squad swim if you want one
+                        (stop at 2 km). No running until Monday 26 October.</p>
+                </div>
+            </section>
+            <section class="wk" id="w1">
+                <div class="wh">
+                    <h2>Week 1, 26 Oct: Base</h2><span class="hrs">about 10.5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 26 Oct</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 27 Oct</h3>
+                        <div>
+                            <div class="s bike"><b>Bike</b>60 min easy</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 28 Oct</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 29 Oct</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>8 km easy</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 30 Oct</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>60 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 31 Oct</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>2:30 easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 1 Nov</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w2">
+                <div class="wh">
+                    <h2>Week 2, 2 Nov: Base</h2><span class="hrs">about 11 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 2 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 3 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 4 Nov</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 5 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>9 km easy</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 6 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>60 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 7 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>2:45 easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 8 Nov</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w3">
+                <div class="wh">
+                    <h2>Week 3, 9 Nov: Base</h2><span class="hrs">about 11.5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 9 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 10 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 11 Nov</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 12 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>10 km easy</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 13 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>75 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 14 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>3:00 easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 15 Nov</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w4">
+                <div class="wh">
+                    <h2>Week 4, 16 Nov: Down and tests</h2><span class="hrs">about 8 h</span>
+                    <p class="wn">Both tests set your zones. Skip the lower-body gym if you are flat after the FTP test.
+                    </p>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 16 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 17 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>FTP test</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 18 Nov</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 19 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km time trial</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 20 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>45 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 21 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>2:00 easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 22 Nov</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w5">
+                <div class="wh">
+                    <h2>Week 5, 23 Nov: Base</h2><span class="hrs">about 12 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 23 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>7 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 24 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 25 Nov</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 26 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>11 km easy</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 27 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>75 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 28 Nov</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>3:00 easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 29 Nov</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w6">
+                <div class="wh">
+                    <h2>Week 6, 30 Nov: Race 1</h2><span class="hrs">about 6 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 30 Nov</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 1 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 2 Dec</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 3 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 4 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>45 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 5 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Rest</b></div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 6 Dec</h3>
+                        <div>
+                            <div class="s race"><b>RACE</b>RACE 1, Elwood sprint: 500 m, 20 km, 5 km.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w7">
+                <div class="wh">
+                    <h2>Week 7, 7 Dec: Build</h2><span class="hrs">about 11.5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 7 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>7 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 8 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 9 Dec</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 10 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>10 km easy</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 11 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>75 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 12 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>3:00 easy</div>
+                            <div class="s run"><b>Brick run</b>4 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 13 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Travel day</b>Hiking trip starts. No training.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w8">
+                <div class="wh">
+                    <h2>Week 8, 14 Dec: Hiking trip</h2><span class="hrs">hiking week</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 14 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 15 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Hiking trip</b>The hiking is the training.</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 16 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Hiking trip</b>The hiking is the training.</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 17 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Hiking trip</b>The hiking is the training.</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 18 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Hiking trip</b>The hiking is the training.</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 19 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Hiking trip</b>The hiking is the training.</div>
+                            <div class="s run"><b>Optional run</b>3 km easy trail run</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 20 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Return day</b>Rest</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w9">
+                <div class="wh">
+                    <h2>Week 9, 21 Dec: Return</h2><span class="hrs">about 10.5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 21 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 22 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 23 Dec</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 24 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>10 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 25 Dec</h3>
+                        <div>
+                            <div class="s rest"><b>Rest</b>Christmas!!</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 26 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>3:00 easy</div>
+                            <div class="s run"><b>Brick run</b>3 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 27 Dec</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w10">
+                <div class="wh">
+                    <h2>Week 10, 28 Dec: Build</h2><span class="hrs">about 12 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 28 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>7 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 29 Dec</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 30 Dec</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Open water swim</b>45 min quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 31 Dec</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>12 km easy,</div>
+                            <div class="s swim"><b>Open water swim</b>30 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 1 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>60 min tempo</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 2 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>3:30 easy</div>
+                            <div class="s run"><b>Brick run</b>4 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 3 Jan</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w11">
+                <div class="wh">
+                    <h2>Week 11, 4 Jan: Race 2</h2><span class="hrs">about 7 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 4 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 5 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 6 Jan</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Open water swim</b>30 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 7 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 8 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>45 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 9 Jan</h3>
+                        <div>
+                            <div class="s rest"><b>Rest</b></div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 10 Jan</h3>
+                        <div>
+                            <div class="s race"><b>RACE</b>RACE 2, St Kilda Olympic: 1.5 km, 40 km, 10 km.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w12">
+                <div class="wh">
+                    <h2>Week 12, 11 Jan: Down</h2><span class="hrs">about 9 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 11 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 12 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 13 Jan</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Open water swim</b>30 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 14 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>9 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 15 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>60 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 16 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>2:30 easy</div>
+                            <div class="s run"><b>Brick run</b>3 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 17 Jan</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>30 to 45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w13">
+                <div class="wh">
+                    <h2>Week 13, 18 Jan: Build</h2><span class="hrs">about 12.5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 18 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>7 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 19 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 20 Jan</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Open water swim</b>45 min quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 21 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>14 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 22 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>90 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 23 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>4:00 tempo</div>
+                            <div class="s run"><b>Brick run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 24 Jan</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>45 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w14">
+                <div class="wh">
+                    <h2>Week 14, 25 Jan: Last build week, then travel</h2><span class="hrs">about 10 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 25 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>8 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 26 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 27 Jan</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Open water swim</b>45 min quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 28 Jan</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>15 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 29 Jan</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride</b>3:30 tempo on TT bike</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 30 Jan</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim, morning</b>About 30 min easy</div>
+                            <div class="s rest"><b>Travel day</b>Flight in the afternoon. Nothing else.</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 31 Jan</h3>
+                        <div>
+                            <div class="s rest"><b>Arrival and rest</b>No training.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w15">
+                <div class="wh">
+                    <h2>Week 15, 1 Feb: Build (Germany)</h2><span class="hrs">about 7 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 1 Feb</h3>
+                        <div>
+                            <div class="s rest"><b>Rest, travel recovery</b>Walk outside in daylight. No training.</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 2 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 3 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>2 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 4 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>13 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 5 Feb</h3>
+                        <div>
+                            <div class="s rest"><b>Rest</b></div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 6 Feb</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, indoors</b>2:00 steady</div>
+                            <div class="s run"><b>Brick run</b>4 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 7 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>3 km easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w16">
+                <div class="wh">
+                    <h2>Week 16, 8 Feb: Specific (Germany)</h2><span class="hrs">about 9 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 8 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>8 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 9 Feb</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>45 min quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 10 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>2.5 km quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 11 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>16 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 12 Feb</h3>
+                        <div>
+                            <div class="s rest"><b>Rest</b></div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 13 Feb</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, indoors</b>2:30 tempo</div>
+                            <div class="s run"><b>Brick run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 14 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>3 km easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w17">
+                <div class="wh">
+                    <h2>Week 17, 15 Feb: Peak (Germany)</h2><span class="hrs">about 9 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 15 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>9 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 16 Feb</h3>
+                        <div>
+                            <div class="s bike"><b>Inoor bike</b>75 min quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 17 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>2.5 km quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 18 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>18 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 19 Feb</h3>
+                        <div>
+                            <div class="s rest"><b>Rest</b></div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 20 Feb</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, indoors</b>2:30 tempo</div>
+                            <div class="s run"><b>Brick run</b>5 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 21 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>3 km easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w18">
+                <div class="wh">
+                    <h2>Week 18, 22 Feb: Down and return (Germany)</h2><span class="hrs">about 5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 22 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 23 Feb</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>75 min quality</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 24 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>2 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 25 Feb</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>12 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 26 Feb</h3>
+                        <div>
+                            <div class="s swim"><b>Pool swim</b>2 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 27 Feb</h3>
+                        <div>
+                            <div class="s rest"><b>No training</b>Travel and packing</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 28 Feb</h3>
+                        <div>
+                            <div class="s rest"><b>Fly home</b>No training.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w19">
+                <div class="wh">
+                    <h2>Week 19, 1 Mar: Taper 1</h2><span class="hrs">about 8.5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 1 Mar</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy only if you slept well;
+                                otherwise rest</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 2 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>Bike</b>60 min easy</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 3 Mar</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 4 Mar</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>10 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 5 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>45 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 6 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>2:30 tempo</div>
+                            <div class="s run"><b>Brick run</b>3 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 7 Mar</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>About 30 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w20">
+                <div class="wh">
+                    <h2>Week 20, 8 Mar: Taper 2</h2><span class="hrs">about 7.5 h</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 8 Mar</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>6 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 9 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>Indoor bike</b>60 min quality</div>
+                            <div class="s gym"><b>Lower-body gym</b>About 45 min</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 10 Mar</h3>
+                        <div>
+                            <div class="s gym"><b>Upper-body gym</b>About 45 min</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 11 Mar</h3>
+                        <div>
+                            <div class="s run"><b>Long run</b>8 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 12 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>TT Bike</b>45 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 13 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>Long ride, Sat or Sun</b>90 min easy</div>
+                            <div class="s run"><b>Brick run</b>3 km easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 14 Mar</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>About 30 min easy</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="wk" id="w21">
+                <div class="wh">
+                    <h2>Week 21, 15 Mar: Race week</h2><span class="hrs">about 3 h plus the race</span>
+                </div>
+                <div class="grid">
+                    <div class="d">
+                        <h3>Mon 15 Mar</h3>
+                        <div>
+                            <div class="s swim"><b>Open water swim</b>About 30 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Tue 16 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>Bike</b>45 min easy</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Wed 17 Mar</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>5 km easy</div>
+                            <div class="s swim"><b>Squad swim</b>3 km set by coach</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Thu 18 Mar</h3>
+                        <div>
+                            <div class="s bike"><b>Bike</b>30 min easy and bike check</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Fri 19 Mar</h3>
+                        <div>
+                            <div class="s run"><b>Run</b>15 min easy shakeout</div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sat 20 Mar</h3>
+                        <div>
+                            <div class="s rest"><b>Rack bike and rest</b>Racking, kit check, carbohydrates, early night
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d">
+                        <h3>Sun 21 Mar</h3>
+                        <div>
+                            <div class="s race"><b>RACE</b>IRONMAN 70.3 Geelong. 1.9 km, 90 km, 21.1 km.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+
+
+<script>
+(function(){
+const KEY='geelong703-arrangement-v1',weeks=[...document.querySelectorAll('section.wk[id]')],orig={},cnt={},html={};
+const cells=w=>[...w.querySelectorAll('.grid > .d')],box=d=>d.children[1];
+const snap=w=>cells(w).map(d=>[...d.querySelectorAll('.s.mv')].map(s=>s.dataset.id));
+const DK='geelong703-done-v1';let done={};try{done=JSON.parse(localStorage.getItem(DK)||'{}')||{}}catch(e){}
+function saveDone(){try{localStorage.setItem(DK,JSON.stringify(done))}catch(e){}}
+function addChk(s){const c=document.createElement('input');c.type='checkbox';c.className='chk';c.setAttribute('aria-label','Mark as done');s.appendChild(c);s.classList.add('ck')}
+function paint(w){w.querySelectorAll('.ck').forEach(s=>{const on=!!done[s.dataset.id];s.classList.toggle('done',on);const c=s.querySelector('.chk');if(c)c.checked=on})}
+function tally(){const q=x=>document.querySelectorAll('section.wk[id] '+x).length,e=document.getElementById('tot');if(e)e.textContent=q('.ck.done')+' of '+q('.ck')+' sessions done'}
+weeks.forEach(w=>{
+  cells(w).forEach(d=>{const c=box(d);[...c.childNodes].forEach(n=>{if(n.nodeType===3&&!n.textContent.trim())n.remove()});
+    c.querySelectorAll('.s.rest').forEach(r=>{if(r.textContent.trim()==='Rest')r.remove()});});
+  let k=0;
+  w.querySelectorAll('.s.run,.s.bike,.s.swim,.s.gym').forEach(s=>{
+    s.dataset.id=w.id+'-'+(k++);s.tabIndex=0;s.classList.add('mv');
+    const g=document.createElement('i');g.className='grip';g.setAttribute('aria-hidden','true');s.appendChild(g);const x=document.createElement('button');x.className='del';x.type='button';x.textContent='×';x.title='Delete session';x.setAttribute('aria-label','Delete session');s.appendChild(x);addChk(s);});
+  w.querySelectorAll('.s.race').forEach((s,j)=>{s.dataset.id=w.id+'-r'+j;addChk(s)});
+  orig[w.id]=JSON.stringify(snap(w));cnt[w.id]=w.querySelectorAll('.s.mv').length;html[w.id]=cells(w).map(d=>box(d).innerHTML);
+  const b=document.createElement('button');b.className='rs';b.type='button';b.textContent='Reset week';b.hidden=true;
+  b.onclick=()=>{reset(w);save();flag(w)};w.querySelector('.wh').appendChild(b);
+  const pr=document.createElement('span');pr.className='prog';w.querySelector('.wh h2').after(pr);
+});
+function reset(w){cells(w).forEach((d,i)=>{box(d).innerHTML=html[w.id][i]});if(last&&last.w===w){last=null;hide()}paint(w)}
+function flag(w){const same=JSON.stringify(snap(w))===orig[w.id];w.querySelector('.rs').hidden=same;const h=w.querySelector('.hrs');if(h)h.classList.toggle('ed',w.querySelectorAll('.s.mv').length!==cnt[w.id]);const t=w.querySelectorAll('.ck').length,dn=w.querySelectorAll('.ck.done').length;w.querySelector('.prog').textContent=t?dn+' of '+t+' done':'';tally()}
+function save(){try{const o={};weeks.forEach(w=>{if(JSON.stringify(snap(w))!==orig[w.id])o[w.id]={a:snap(w),n:cnt[w.id]}});
+  if(Object.keys(o).length)localStorage.setItem(KEY,JSON.stringify(o));else localStorage.removeItem(KEY)}catch(e){}}
+function apply(w,v){const arr=Array.isArray(v)?v:v.a,m={};w.querySelectorAll('.s.mv').forEach(s=>m[s.dataset.id]=s);
+  const f=arr.flat(),k=new Set(f),tot=Object.keys(m).length;if(arr.length!==7||!f.every(i=>m[i])||(Array.isArray(v)?f.length!==tot:v.n!==tot))return;Object.keys(m).forEach(i=>{if(!k.has(i))m[i].remove()});
+  cells(w).forEach((d,i)=>arr[i].forEach(id=>box(d).appendChild(m[id])))}
+let o={};try{o=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+weeks.forEach(w=>{try{if(o[w.id])apply(w,o[w.id])}catch(e){}paint(w);flag(w)});
+document.getElementById('rsall').onclick=()=>{weeks.forEach(w=>{reset(w);flag(w)});save()};
+
+let drag=null;
+function place(e){drag.x=e.clientX;drag.y=e.clientY;
+  drag.ghost.style.transform='translate('+(e.clientX-drag.dx)+'px,'+(e.clientY-drag.dy)+'px)';
+  const el=document.elementFromPoint(e.clientX,e.clientY),d=el&&el.closest('.d'),ok=d&&drag.week.contains(d);
+  document.querySelectorAll('.d.over').forEach(x=>{if(x!==d)x.classList.remove('over')});
+  if(ok)d.classList.add('over');drag.over=ok?d:null}
+function loop(){if(!drag)return;const m=70,h=innerHeight;let v=0;
+  if(drag.y<m)v=-(m-drag.y)/3;else if(drag.y>h-m)v=(drag.y-(h-m))/3;
+  if(v){scrollBy(0,v);place({clientX:drag.x,clientY:drag.y})}requestAnimationFrame(loop)}
+document.addEventListener('pointerdown',e=>{
+  const s=e.target.closest&&e.target.closest('.s.mv');if(!s||drag||e.target.closest('.del,.chk'))return;
+  const grip=e.target.classList.contains('grip');
+  if(e.pointerType==='mouse'?e.button!==0:!grip)return;
+  e.preventDefault();
+  const r=s.getBoundingClientRect(),ghost=s.cloneNode(true);ghost.classList.add('ghost');ghost.classList.remove('mv');ghost.style.width=r.width+'px';
+  document.body.appendChild(ghost);document.body.classList.add('dragging');s.classList.add('lift');
+  drag={s,ghost,week:s.closest('section.wk'),dx:e.clientX-r.left,dy:e.clientY-r.top,id:e.pointerId,x:e.clientX,y:e.clientY,over:null};
+  place(e);loop()});
+document.addEventListener('pointermove',e=>{if(drag&&e.pointerId===drag.id)place(e)});
+function end(cancel){if(!drag)return;const d=drag.over;
+  if(d&&!cancel){const c=box(d),before=[...c.querySelectorAll('.s')].find(x=>{if(x===drag.s)return false;const r=x.getBoundingClientRect();return drag.y<r.top+r.height/2});
+    c.insertBefore(drag.s,before||null);save();flag(drag.week)}
+  drag.ghost.remove();drag.s.classList.remove('lift');
+  document.querySelectorAll('.d.over').forEach(x=>x.classList.remove('over'));document.body.classList.remove('dragging');drag=null}
+document.addEventListener('pointerup',()=>end(false));
+document.addEventListener('pointercancel',()=>end(true));
+document.addEventListener('keydown',e=>{
+  const s=e.target.closest&&e.target.closest('.s.mv');if(!s||!e.altKey)return;
+  const k={ArrowLeft:-1,ArrowUp:-1,ArrowRight:1,ArrowDown:1}[e.key];if(!k)return;
+  e.preventDefault();const w=s.closest('section.wk'),cs=cells(w),t=cs[cs.indexOf(s.closest('.d'))+k];
+  if(!t)return;box(t).appendChild(s);s.focus();save();flag(w)});
+let last=null,timer=null;const toast=document.createElement('div');toast.id='toast';toast.setAttribute('role','status');toast.hidden=true;
+toast.innerHTML='<span>Session deleted</span><button type="button">Undo</button>';document.body.appendChild(toast);
+function hide(){toast.hidden=true;clearTimeout(timer)}
+function del(s){const w=s.closest('section.wk'),c=s.parentNode;last={s,c,next:s.nextSibling,w};s.remove();save();flag(w);toast.hidden=false;clearTimeout(timer);timer=setTimeout(hide,7000)}
+toast.querySelector('button').onclick=()=>{if(!last)return;const{s,c,next,w}=last;c.insertBefore(s,next&&next.parentNode===c?next:null);last=null;save();flag(w);hide()};
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.del');if(b)del(b.closest('.s.mv'))});
+document.addEventListener('keydown',e=>{if(e.key!=='Delete'&&e.key!=='Backspace')return;const s=e.target.closest&&e.target.closest('.s.mv');if(s){e.preventDefault();const n=s.nextElementSibling||s.previousElementSibling;del(s);if(n&&n.focus)n.focus()}});
+document.addEventListener('change',e=>{const c=e.target;if(!c.classList||!c.classList.contains('chk'))return;const s=c.closest('.ck'),id=s.dataset.id;if(c.checked)done[id]=1;else delete done[id];s.classList.toggle('done',c.checked);saveDone();flag(s.closest('section.wk'))});
+const jump=document.getElementById('jump');let curEl=null;
+function mark(){const t=new Date();t.setHours(0,0,0,0);
+  document.querySelectorAll('.now,.today,.cur').forEach(x=>x.classList.remove('now','today','cur'));
+  curEl=null;const day=a=>Math.round((t-a)/864e5),w0=document.querySelector('section.wk:not([id])');
+  if(w0){const d=day(new Date(2026,9,19));if(d>=0&&d<7){w0.classList.add('now');curEl=w0}}
+  weeks.forEach((w,i)=>{const d=day(new Date(2026,9,26+i*7));if(d>=0&&d<7){w.classList.add('now');cells(w)[d].classList.add('today');const c=document.querySelectorAll('#strip .c')[i];if(c)c.classList.add('cur');curEl=w}});
+  jump.hidden=!curEl}
+jump.onclick=()=>{if(curEl)curEl.scrollIntoView({behavior:'smooth',block:'start'})};
+mark();document.addEventListener('visibilitychange',()=>{if(!document.hidden)mark()});
+})();
+</script>
+</body>
+
+</html>
